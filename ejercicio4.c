@@ -13,37 +13,60 @@ La impresión deberá realizarse en el main.
 #include <stdio.h>
 #define R 3
 #define C 3
-#define N 1
-#define M 3
-//int buscarnumeromenor(int a[N], int *m);
+
+void capturaMatriz(int m[R][C]);
+int buscaMenor(int arr[C], int *menor);
 int main ()
 {
      int matriz[R][C];
      int i;
      int j;
-     int arreglo[N][M];
+     int arreglo[C];
      int menor;
-    int renglones;
-    for(i=0;i<C; i++)
+     int pos;
+     int ren;
+ 
+
+    capturaMatriz(matriz);
+    for (ren=0; ren<R ; ren++ )
     {
-           printf("dame [%d] ", i);
-           scanf("%d",&matriz[i]);
+          pos=buscaMenor(matriz[ren], &menor);
+          printf("el menor del renglon %d es %d y esta en la posicion %d", ren, menor, pos );
+          printf(" ");
     }
      
- for (i=0;i<3; i++)
- {
-      if (menor>matriz[i][j])
-      {
-           menor=matriz[i][j];
-      }  
-         
- }
-     
-  printf("el menor es  %d esta en la posicion [%d]", menor, i );
- scanf("%d [%d][%d]",&menor, &matriz[i]);
+  
 
   fflush(stdin);
   getchar();           
   return 0;
  }
+void capturaMatriz(int m[R][C])
+{
+    int i, j;
+    for (i=0; i<R ; i++ )
+    {
+        for (j=0; j<C; j++ )
+        {
+            printf("matriz [%d][%d]",i,j);
+            scanf("%d", &m[i][j]);
+        }
+    }
+    return; 
+} 
 
+int buscaMenor(int arr[C], int *menor)
+{
+     int pos=-1;
+     int i;
+     *menor=arr[0];
+     for (i=0; i<C ; i++ )
+     {
+          if (arr[i] < *menor)
+          {
+               *menor=arr[i];
+               pos=i;
+          }
+     }
+ return pos;
+}
