@@ -12,36 +12,48 @@ La función no deberá imprimir nada, solo buscar el número mayor.
 
 La impresión deberá realizarse en el main.
 */
+
 #include <stdio.h>
 #define N 5
-
+int buscarMayor(int arr[N], int *p);
 int main ()
 {
  int arreglo[N];
  int i;
  int mayor;
-
+ int pos=-1;
 
  for (i=0; i<N; i++ )
   {
       printf("arreglo[%d]", i);
       scanf("%d",&arreglo[i]);
   }
+  mayor=buscarMayor(arreglo,&pos);
 
   
   
- for (i=0; i<N; i++ )
-  {
-    if(arreglo[i]>mayor)
-    {
-        mayor=arreglo[i];
-    }
-  }
+ printf("el mayor es %d en la posicion [%d] ",mayor,pos);
+ scanf("%d[%d]", &mayor,pos);   
 
- printf("el mayor es %d en la posicion %d ",mayor,i);
- scanf("%d %d", mayor,i);    
  fflush(stdin);
- getchar();
+getchar();
  return 0;
 }
+
+
+int buscarMayor(int arr[N], int *p)
+{
+  int i;
+  int mayor=arr[0];
+  for (i=0; i<N ; i++ )
+  { 
+    if(arr[i]>mayor)
+     mayor=arr[i];
+     *p=i;
+  }
+ return mayor;
+}
+
+
+
 
